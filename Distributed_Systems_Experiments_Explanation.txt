@@ -1,0 +1,88 @@
+
+Experiment 1: Multi-threaded Client/Server Process Communication using RMI
+
+RMI (Remote Method Invocation) allows communication between Java applications running on different machines in a distributed environment. 
+In this experiment, we implement a multi-threaded client-server communication using RMI to compute the sum of two integers.
+
+Files and Explanation:
+
+1. AddServerIntf.java:
+   - Defines the remote interface that declares the method to be invoked by the client.
+   - The method `addNumbers` accepts two integers and returns their sum.
+   - The interface is implemented by the server-side class.
+   
+2. AddServerImpl.java:
+   - Implements the `AddServerIntf` interface and defines the logic of the `addNumbers` method.
+   - This is where the server calculates the sum and returns the result.
+   - It extends `UnicastRemoteObject` to make the class a remote object.
+   
+3. AddServer.java:
+   - The server-side main class that binds the `AddServerImpl` object to the RMI registry.
+   - The server listens for client requests and handles them through multi-threading.
+   
+4. AddClient.java:
+   - The client-side class that looks up the `AddServerImpl` object in the RMI registry.
+   - It invokes the remote `addNumbers` method to calculate the sum of two numbers.
+   - The client calls the server's method and prints the sum result.
+
+Important Points:
+- RMI enables seamless communication between Java-based applications.
+- Multi-threading helps handle multiple client requests concurrently, making the system scalable.
+- Each remote method invocation occurs over the network.
+
+======================================================
+
+Experiment 2: Distributed Application using CORBA for String Reversal
+
+This experiment demonstrates the usage of CORBA (Common Object Request Broker Architecture) to implement a distributed application 
+for string reversal. CORBA uses IDL (Interface Definition Language) to define remote interfaces and enables communication between 
+distributed objects written in different programming languages.
+
+Files and Explanation:
+
+1. ReverseModule.idl:
+   - Defines the `Reverse` interface within the `ReverseModule` module.
+   - The interface declares the method `reverse_string`, which takes a string and returns its reversed version.
+   
+2. ReverseImpl.java:
+   - Implements the `reverse_string` method declared in the IDL interface.
+   - It contains the logic to reverse the input string and return the result.
+   
+3. ReverseServer.java:
+   - The server-side class that creates and binds the `ReverseImpl` object with the CORBA naming service.
+   - The server listens for client requests and serves them by invoking the `reverse_string` method on the `ReverseImpl` object.
+   
+4. ReverseClient.java:
+   - The client-side class that looks up the `Reverse` object from the CORBA naming service.
+   - It invokes the `reverse_string` method remotely and prints the reversed string.
+
+Important Points:
+- CORBA allows communication between objects in a networked system, irrespective of language or platform.
+- The IDL file defines the structure of remote services.
+- Remote invocations using CORBA are transparent to the user, making distributed communication easier.
+
+======================================================
+
+Experiment 3: Distributed System for Sum of Array Elements using MPI in Java
+
+This experiment demonstrates the use of **MPJ Express** (Java-based MPI) for distributing tasks among multiple processors to calculate 
+the sum of N elements in an array. The array is divided into chunks, each processor calculates its local sum, and the results are 
+gathered by the root processor to calculate the final sum.
+
+Files and Explanation:
+
+1. Arrsum.java:
+   - The main Java class that implements the logic for the distributed sum using MPJ Express.
+   - It divides the array into chunks and distributes them among processors.
+   - Each processor calculates its local sum and sends it back to the root.
+   - The root processor collects all partial sums and calculates the total sum.
+   
+2. mpj Folder:
+   - Contains the **MPJ Express** library files required for running the MPI-based Java application.
+   - Includes necessary classes such as `MPI`, `COMM_WORLD`, and utilities for message passing and process management.
+   - MPJ Express allows Java programs to run in parallel across multiple machines or threads.
+
+Important Points:
+- MPJ Express provides a Java API for MPI, enabling message-passing between processes in a distributed system.
+- The distributed sum is computed by dividing the workload (array elements) among multiple processors.
+- Each processor computes its partial sum and sends it to the root processor, which aggregates them.
